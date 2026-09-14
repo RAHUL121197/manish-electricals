@@ -15,6 +15,8 @@ import ContactPage from './pages/public/ContactPage';
 import LoginPage from './pages/public/LoginPage';
 import NotFoundPage from './pages/public/NotFoundPage';
 import AdminDashboardPage from './pages/admin/DashboardPage';
+import EmployeesPage from './pages/admin/EmployeesPage';
+import EnquiriesPage from './pages/admin/EnquiriesPage';
 import AdminModulePage from './pages/admin/ModulePage';
 import AdminSettingsPage from './pages/admin/SettingsPage';
 import EmployeeDashboardPage from './pages/employee/DashboardPage';
@@ -55,13 +57,13 @@ export default function App() {
         }
       >
         <Route index element={<AdminDashboardPage />} />
-        <Route path="employees" element={<AdminModulePage module="employees" />} />
+        <Route path="employees" element={<EmployeesPage />} />
         <Route path="attendance" element={<AdminModulePage module="attendance" />} />
         <Route path="tasks" element={<AdminModulePage module="tasks" />} />
         <Route path="daily-reports" element={<AdminModulePage module="daily-reports" />} />
         <Route path="projects" element={<AdminModulePage module="projects" />} />
         <Route path="gallery" element={<AdminModulePage module="gallery" />} />
-        <Route path="enquiries" element={<AdminModulePage module="enquiries" />} />
+        <Route path="enquiries" element={<EnquiriesPage />} />
         <Route path="reports" element={<AdminModulePage module="reports" />} />
         <Route path="settings" element={<AdminSettingsPage />} />
       </Route>

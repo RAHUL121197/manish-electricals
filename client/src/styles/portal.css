@@ -520,7 +520,165 @@ a.portal-tile:hover {
   margin: 0;
 }
 
-/* ---------- Settings page ---------- */
+/* ---------- Admin tables and forms ---------- */
+.admin-panel {
+  padding: 20px;
+}
+
+.employee-form,
+.toolbar-row,
+.form-header-row,
+.form-actions-right {
+  width: 100%;
+}
+
+.form-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-field.wide {
+  grid-column: 1 / -1;
+}
+
+.form-actions-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 12px;
+}
+
+.search-box input {
+  border: 0;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  color: var(--tx-light);
+}
+
+.pill-count {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--tx-light-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.88rem;
+}
+
+.data-table th {
+  color: var(--tx-light-muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+
+.status-badge.new {
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+}
+
+.status-badge.contacted {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+
+.status-badge.closed {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+
+.status-badge.active {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+
+.status-badge.inactive {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--tx-light);
+  cursor: pointer;
+}
+
+.icon-btn.danger {
+  color: #b91c1c;
+}
+
+.select.compact {
+  min-width: 120px;
+}
+
 .settings-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;

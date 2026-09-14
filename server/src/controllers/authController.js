@@ -8,13 +8,13 @@ const { AppError } = require('../middleware/errorHandler');
  */
 async function findUserWithProfile(loginId) {
   const res = await query(
-    `SELECT u.id, u.login_id, u.password_hash, u.role, u.is_active, u.must_reset_password, u.last_login_at,
-            e.id AS employee_pk, e.employee_id, e.full_name, e.designation, e.work_location,
-            e.mobile_number, e.profile_photo, e.status AS employee_status
+    `SELECT u.id, u.name, u.username, u.login_id, u.email, u.phone, u.password_hash, u.role, u.is_active, u.must_reset_password, u.last_login_at, u.employee_id,
+            e.id AS employee_pk, e.employee_code, e.employee_id AS employee_ref, e.full_name, e.designation, e.work_location,
+            e.phone AS employee_phone, e.status AS employee_status
      FROM users u
      LEFT JOIN employees e ON e.user_id = u.id
-     WHERE u.login_id = $1`,
-    [loginId]
+     WHERE u.username = $1 OR u.email = $1 OR u.login_id = $1`,
+    [String(loginId || '').trim()]
   );
   return res.rows[0] || null;
 }
@@ -22,9 +22,9 @@ async function findUserWithProfile(loginId) {
 function signToken(user) {
   const payload = {
     id: user.id,
-    loginId: user.login_id,
+    loginId: user.username || user.login_id || user.email || null,
     role: user.role,
-    employeeId: user.employee_id || null,
+    employeeId: user.employee_ref || user.employee_id || null,
     employeePk: user.employee_pk || null,
   };
   const expiresIn = process.env.JWT_EXPIRES_IN || '8h';
@@ -34,20 +34,21 @@ function signToken(user) {
 function publicUser(row) {
   const user = {
     id: row.id,
-    loginId: row.login_id,
+    name: row.name || row.full_name || row.username || row.login_id || 'User',
+    loginId: row.username || row.login_id || row.email || 'user',
     role: row.role,
     mustResetPassword: row.must_reset_password,
     lastLoginAt: row.last_login_at,
   };
-  if (row.employee_id) {
+  if (row.employee_ref || row.employee_id) {
     user.employee = {
       id: row.employee_pk,
-      employeeId: row.employee_id,
-      fullName: row.full_name,
+      employeeId: row.employee_ref || row.employee_id,
+      fullName: row.full_name || row.name,
       designation: row.designation,
       workLocation: row.work_location,
-      mobileNumber: row.mobile_number,
-      profilePhoto: row.profile_photo,
+      mobileNumber: row.employee_phone || row.phone,
+      profilePhoto: row.profile_photo || null,
       status: row.employee_status,
     };
   }

@@ -4,6 +4,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const authRoutes = require('./routes/authRoutes');
+const employeeRoutes = require('./routes/employeeRoutes');
+const enquiryRoutes = require('./routes/enquiryRoutes');
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 const { pool } = require('./config/db');
 
@@ -50,6 +52,35 @@ function createApp() {
   });
 
   app.use('/api/auth', authRoutes);
+  app.use('/api/employees', employeeRoutes);
+  app.use('/api/enquiries', enquiryRoutes);
+
+  app.post('/api/contact', async (req, res, next) => {
+    try {
+      const { customerName, email, phone, subject, message } = req.body || {};
+      if (!customerName || !String(customerName).trim()) {
+        return res.status(400).json({ success: false, message: 'Customer name is required.' });
+      }
+      if (!email || !String(email).trim()) {
+        return res.status(400).json({ success: false, message: 'Email is required.' });
+      }
+      if (!phone || !String(phone).trim()) {
+        return res.status(400).json({ success: false, message: 'Mobile number is required.' });
+      }
+      if (!subject || !String(subject).trim()) {
+        return res.status(400).json({ success: false, message: 'Subject is required.' });
+      }
+      if (!message || !String(message).trim()) {
+        return res.status(400).json({ success: false, message: 'Message is required.' });
+      }
+
+      const { createEnquiry } = require('./controllers/enquiryController');
+      req.body = { customerName, email, phone, subject, message };
+      return createEnquiry(req, res, next);
+    } catch (error) {
+      next(error);
+    }
+  });
 
   app.use(notFoundHandler);
   app.use(errorHandler);

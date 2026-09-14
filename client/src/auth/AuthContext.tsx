@@ -17,6 +17,7 @@ export interface EmployeeProfile {
 
 export interface AuthUser {
   id: number;
+  name?: string | null;
   loginId: string;
   role: Role;
   mustResetPassword: boolean;
