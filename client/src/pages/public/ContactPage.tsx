@@ -24,6 +24,7 @@ export default function ContactPage() {
   const [values, setValues] = useState<FormValues>(EMPTY_FORM);
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const setField = (field: keyof FormValues, value: string) => {
     setValues((prev) => ({ ...prev, [field]: value }));
@@ -34,7 +35,7 @@ export default function ContactPage() {
     const next: FormErrors = {};
     if (!values.name.trim()) next.name = t('common.required');
     if (!/^[6-9]\d{9}$/.test(values.mobile.trim())) next.mobile = t('common.invalidMobile');
-    if (values.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
+    if (!values.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
       next.email = t('common.invalidEmail');
     }
     if (!values.message.trim()) next.message = t('common.required');
@@ -48,17 +49,40 @@ export default function ContactPage() {
     if (Object.values(nextErrors).some(Boolean)) return;
 
     setStatus('sending');
+    setSubmitMessage('');
+
     try {
+      const payload = {
+        customer_name: values.name.trim(),
+        email: values.email.trim(),
+        phone: values.mobile.trim(),
+        subject: values.subject.trim() || 'General Enquiry',
+        message: values.message.trim(),
+      };
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error('request_failed');
+
+      const json = await res.json().catch(() => ({ success: false, message: 'Something went wrong. Please try again.' }));
+
+      if (!res.ok || !json.success) {
+        throw new Error(json.message || 'Something went wrong. Please try again.');
+      }
+
       setValues(EMPTY_FORM);
       setStatus('success');
-    } catch {
+      setSubmitMessage(
+        'Thank you for contacting Manish Electricals. Your enquiry has been submitted successfully. Our team will contact you shortly.'
+      );
+    } catch (error) {
+      console.error('[contact-form]', error);
       setStatus('error');
+      setSubmitMessage(
+        error instanceof Error && error.message ? error.message : 'Something went wrong while submitting your enquiry. Please try again.'
+      );
     }
   };
 
@@ -148,12 +172,12 @@ export default function ContactPage() {
               {status === 'success' && (
                 <div className="alert alert-success" role="status">
                   <Send aria-hidden="true" size={16} />
-                  {t('contact.success')}
+                  {submitMessage || t('contact.success')}
                 </div>
               )}
               {status === 'error' && (
                 <div className="alert alert-error" role="alert">
-                  {t('common.somethingWentWrong')}
+                  {submitMessage || t('common.somethingWentWrong')}
                 </div>
               )}
 
