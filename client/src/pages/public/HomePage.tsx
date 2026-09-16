@@ -90,11 +90,11 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="hero-visual" aria-hidden="true">
-              <div className="hero-ring r1" />
-              <div className="hero-ring r2" />
-              <div className="hero-core">
-                <Zap />
+            <div className="hero-visual" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-card)' }}>
+              <img src="/assets/images/hero/hero-bg.jpg" alt="Electrical maintenance team working on utility pole" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top right, rgba(2, 6, 23, 0.8), transparent)' }}></div>
+              <div className="hero-core" style={{ position: 'absolute', bottom: '30px', left: '30px', zIndex: 2 }}>
+                <Zap size={32} color="var(--c-accent)" />
               </div>
             </div>
           </Reveal>
@@ -148,11 +148,14 @@ export default function HomePage() {
               <div className="icon-wrap sky">
                 <RadioTower aria-hidden="true" size={26} />
               </div>
-              <div>
+              <div style={{ flex: '1 1 200px' }}>
                 <h3 style={{ marginBottom: 4 }}>{t('home.features.fieldSupport')}</h3>
                 <p className="text-muted" style={{ margin: 0 }}>
                   {t('home.features.fieldSupportDesc')}
                 </p>
+              </div>
+              <div style={{ flex: '1 1 300px', height: '120px', borderRadius: 'var(--radius)', overflow: 'hidden' }}>
+                 <img src="/assets/images/services/field-work.jpg" alt="Lineworker maintaining elevated utility pole" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
               </div>
             </div>
           </Reveal>
@@ -193,17 +196,22 @@ export default function HomePage() {
         <div className="container">
           <div className="about-split">
             <Reveal>
-              <div className="about-panel">
-                <Logo size={88} />
-                <p style={{ marginTop: 22, fontSize: '1.02rem', lineHeight: 1.7 }}>
-                  {t('home.about.text1')}
-                </p>
-                <p className="text-muted" style={{ fontSize: '1.02rem', lineHeight: 1.7 }}>
-                  {t('home.about.text2')}
-                </p>
-                <Link to="/about" className="btn btn-primary" style={{ marginTop: 10 }}>
-                  {t('home.about.cta')} <ArrowRight aria-hidden="true" size={16} />
-                </Link>
+              <div className="about-panel" style={{ padding: '0', overflow: 'hidden' }}>
+                <div style={{ height: '240px', width: '100%' }}>
+                  <img src="/assets/images/about/about-team.jpg" alt="Professional electrical team wearing safety gear inspecting equipment" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                </div>
+                <div style={{ padding: '36px 44px' }}>
+                  <Logo size={64} />
+                  <p style={{ marginTop: 22, fontSize: '1.02rem', lineHeight: 1.7 }}>
+                    {t('home.about.text1')}
+                  </p>
+                  <p className="text-muted" style={{ fontSize: '1.02rem', lineHeight: 1.7 }}>
+                    {t('home.about.text2')}
+                  </p>
+                  <Link to="/about" className="btn btn-primary" style={{ marginTop: 10 }}>
+                    {t('home.about.cta')} <ArrowRight aria-hidden="true" size={16} />
+                  </Link>
+                </div>
               </div>
             </Reveal>
             <Reveal delay={120}>

@@ -72,18 +72,28 @@ export default function ServicesPage() {
         <div className="container">
           <div className="benefit-wrap">
             <SectionHeading centered eyebrow="The Working Standard" title={t('services.howHeading')} />
-            <ul className="check-list grid cols-2" style={{ maxWidth: 760, margin: '0 auto' }}>
-              {benefits.map((b) => (
-                <li key={b}>
-                  <CheckCircle2 aria-hidden="true" size={22} />
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <div style={{ textAlign: 'center', marginTop: 40 }}>
-              <Link to="/contact" className="btn btn-primary btn-lg">
-                {t('common.contactUs')} <ArrowRight aria-hidden="true" size={18} />
-              </Link>
+            
+            <div className="about-split" style={{ alignItems: 'center' }}>
+              <Reveal>
+                <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', height: '100%', minHeight: '350px', boxShadow: 'var(--shadow-card)', position: 'relative' }}>
+                  <img src="/assets/images/services/electrical-work.jpg" alt="Electrical maintenance technician working on control panel" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} loading="lazy" />
+                </div>
+              </Reveal>
+              <Reveal delay={120}>
+                <ul className="check-list" style={{ display: 'grid', gap: '20px' }}>
+                  {benefits.map((b) => (
+                    <li key={b} style={{ fontSize: '1.05rem' }}>
+                      <CheckCircle2 aria-hidden="true" size={24} style={{ color: 'var(--c-primary)' }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <div style={{ marginTop: 40 }}>
+                  <Link to="/contact" className="btn btn-primary btn-lg">
+                    {t('common.contactUs')} <ArrowRight aria-hidden="true" size={18} />
+                  </Link>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>

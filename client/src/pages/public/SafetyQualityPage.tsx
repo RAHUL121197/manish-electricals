@@ -76,15 +76,18 @@ export default function SafetyQualityPage() {
 function FieldSupportBanner() {
   const t = useT();
   return (
-    <div className="field-support-banner">
-      <div className="icon-wrap sky">
-        <ClipboardCheck aria-hidden="true" size={26} />
-      </div>
-      <div>
+    <div className="field-support-banner" style={{ padding: 0, overflow: 'hidden' }}>
+      <div style={{ flex: '1 1 300px', padding: '36px 44px' }}>
+        <div className="icon-wrap sky" style={{ marginBottom: 20 }}>
+          <ClipboardCheck aria-hidden="true" size={26} />
+        </div>
         <h3 style={{ marginBottom: 4 }}>{t('safety.compliance')}</h3>
         <p className="text-muted" style={{ margin: 0 }}>
           {t('safety.complianceDesc')}
         </p>
+      </div>
+      <div style={{ flex: '1 1 300px', height: '100%', minHeight: '260px' }}>
+         <img src="/assets/images/about/about-team.jpg" alt="Safety and compliance inspection team" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
       </div>
     </div>
   );

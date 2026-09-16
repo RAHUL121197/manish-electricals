@@ -36,11 +36,8 @@ export default function WorkforcePage() {
         <div className="container">
           <div className="about-split">
             <Reveal>
-              <div className="about-graphic" aria-hidden="true">
-                <div className="hero-ring r1" style={{ position: 'absolute' }} />
-                <div className="hero-core" style={{ position: 'relative' }}>
-                  <Users />
-                </div>
+              <div className="about-graphic" style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', height: '100%', minHeight: '350px', position: 'relative', boxShadow: 'var(--shadow-card)' }}>
+                <img src="/assets/images/about/about-team.jpg" alt="Electrical maintenance team and workforce" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} loading="lazy" />
               </div>
             </Reveal>
             <Reveal delay={100}>

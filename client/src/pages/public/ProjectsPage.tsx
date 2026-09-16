@@ -19,7 +19,28 @@ interface Project {
   imageUrl?: string;
 }
 
-const EMPTY_PROJECTS: Project[] = [];
+const PROJECTS: Project[] = [
+  {
+    id: 1,
+    name: 'Torrent Power Underground Cabling',
+    client: 'Torrent Power Ltd',
+    location: 'Surat',
+    description: 'Extensive underground power distribution cabling and inspection work for Torrent Power.',
+    startDate: 'Mar 2025',
+    status: 'Ongoing',
+    imageUrl: '/assets/images/projects/torrent-power-project.jpg'
+  },
+  {
+    id: 2,
+    name: 'Industrial Electrical Panel Setup',
+    client: 'Local Manufacturing',
+    location: 'Hazira, Surat',
+    description: 'Complete setup and wiring of control panels and electrical distributions for an industrial facility.',
+    startDate: 'Jan 2026',
+    status: 'Completed',
+    imageUrl: '/assets/images/services/electrical-work.jpg'
+  }
+];
 
 export default function ProjectsPage() {
   const t = useT();
@@ -41,7 +62,7 @@ export default function ProjectsPage() {
         <div className="container">
           <SectionHeading centered eyebrow="Work Experience" title={t('projects.heading')} sub={t('projects.desc')} />
 
-          {EMPTY_PROJECTS.length === 0 ? (
+          {PROJECTS.length === 0 ? (
             <Reveal>
               <div className="state-panel">
                 <div className="state-icon">
@@ -53,7 +74,7 @@ export default function ProjectsPage() {
             </Reveal>
           ) : (
             <div className="grid cols-3">
-              {EMPTY_PROJECTS.map((p) => (
+              {PROJECTS.map((p) => (
                 <Reveal key={p.id}>
                   <ProjectCard project={p} />
                 </Reveal>

@@ -47,12 +47,8 @@ export default function AboutPage() {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <div className="about-graphic" aria-hidden="true">
-                <div className="hero-ring r1" style={{ position: 'absolute' }} />
-                <div className="hero-ring r2" style={{ position: 'absolute' }} />
-                <div className="hero-core" style={{ position: 'relative' }}>
-                  <Zap />
-                </div>
+              <div className="about-graphic" style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', height: '100%', minHeight: '350px', position: 'relative', boxShadow: 'var(--shadow-card)' }}>
+                <img src="/assets/images/office/office-team.jpg" alt="Corporate office team reviewing electrical blueprints" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} loading="lazy" />
               </div>
             </Reveal>
           </div>
