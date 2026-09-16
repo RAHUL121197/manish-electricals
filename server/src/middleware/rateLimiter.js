@@ -1,14 +1,34 @@
 const rateLimit = require('express-rate-limit');
 
 /**
- * Protects the login endpoint from brute-force attacks.
+ * Limits how often the public contact form may be submitted from a single IP.
+ * Prevents spam and accidental duplicate submission floods.
  */
-const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20,
+const contactLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 5,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { success: false, message: 'Too many login attempts. Please try again after some time.' },
+  message: {
+    success: false,
+    message: 'Too many submission attempts. Please wait a few minutes and try again.',
+  },
+  keyGenerator: (req) => req.ip || req.socket.remoteAddress || 'unknown',
 });
 
-module.exports = { loginLimiter };
+/**
+ * Limits admin login attempts to slow down brute forcing.
+ */
+const adminLoginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: 'Too many login attempts. Please wait a few minutes and try again.',
+  },
+  keyGenerator: (req) => req.ip || req.socket.remoteAddress || 'unknown',
+});
+
+module.exports = { contactLimiter, adminLoginLimiter };

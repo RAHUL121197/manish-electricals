@@ -74,8 +74,8 @@ export default function HomePage() {
               {t('home.hero.eyebrow')}
             </span>
             <h1 style={{ color: '#fff' }}>
-              {t('home.hero.title').split(' ')[0]}{' '}
-              <span className="gradient-text">{t('home.hero.title').split(' ').slice(1).join(' ')}</span>
+              {COMPANY.name.split(' ')[0]}{' '}
+              <span className="gradient-text">{COMPANY.name.split(' ').slice(1).join(' ')}</span>
             </h1>
             <p className="hero-tagline">{t('home.hero.tagline')}</p>
             <p className="hero-support">{t('home.hero.support')}</p>
@@ -85,9 +85,6 @@ export default function HomePage() {
               </Link>
               <Link to="/services" className="btn btn-outline btn-lg">
                 {t('home.hero.services')}
-              </Link>
-              <Link to="/login" className="btn btn-white btn-lg">
-                {t('home.hero.employeeLogin')}
               </Link>
             </div>
           </Reveal>

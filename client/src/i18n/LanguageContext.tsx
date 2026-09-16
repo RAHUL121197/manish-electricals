@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
+import { COMPANY } from '../lib/company';
 
 export type LanguageCode = 'en' | 'gu' | 'hi';
 
@@ -92,8 +93,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       let text = DICTIONARIES[lang][key] ?? DICTIONARIES[FALLBACK_LANG][key] ?? key;
       if (vars) {
         text = text.replace(/\{(\w+)\}/g, (match, name: string) =>
-          vars[name] !== undefined ? String(vars[name]) : match
+          name === 'companyName'
+            ? COMPANY.name
+            : vars[name] !== undefined
+              ? String(vars[name])
+              : match
         );
+      } else {
+        text = text.replace(/\{companyName\}/g, COMPANY.name);
       }
       return text;
     },

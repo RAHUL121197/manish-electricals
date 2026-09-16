@@ -16,7 +16,6 @@ const COMPANY_LINKS = [
   { key: 'workforce', to: '/workforce' },
   { key: 'clients', to: '/our-client' },
   { key: 'safety', to: '/safety-quality' },
-  { key: 'login', to: '/login' },
 ] as const;
 
 export default function Footer() {

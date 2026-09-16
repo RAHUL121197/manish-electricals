@@ -56,6 +56,7 @@
 
 .topbar-lang {
   position: relative;
+  flex-shrink: 0;
 }
 .lang-toggle {
   display: inline-flex;
@@ -132,15 +133,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
   min-height: var(--header-h);
+  flex-wrap: nowrap;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
   text-decoration: none;
+  min-width: 0;
 }
 .brand-text {
   display: flex;
@@ -149,31 +153,38 @@
 }
 .brand-text strong {
   font-family: var(--font-display);
-  font-size: 1.18rem;
+  font-size: 1.14rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   color: var(--tx-dark);
+  white-space: nowrap;
 }
 .brand-text span {
   font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.34em;
+  letter-spacing: 0.3em;
   color: var(--c-accent);
+  white-space: nowrap;
 }
 
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  margin-inline: auto;
 }
 .nav-link {
   position: relative;
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--tx-dark-muted);
-  padding: 9px 13px;
+  padding: 9px 10px;
   border-radius: 8px;
+  white-space: nowrap;
+  text-decoration: none;
   transition: color 0.18s ease, background 0.18s ease;
 }
 .nav-link:hover {
@@ -186,9 +197,9 @@
 .nav-link.active::after {
   content: '';
   position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 2px;
+  left: 10px;
+  right: 10px;
+  bottom: 4px;
   height: 2px;
   border-radius: 2px;
   background: var(--c-accent);
@@ -198,9 +209,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-}
-.nav-login {
-  white-space: nowrap;
+  flex-shrink: 0;
 }
 .nav-burger {
   display: none;
@@ -208,13 +217,21 @@
   border: 1px solid var(--c-dark-line);
   border-radius: 10px;
   color: var(--tx-dark);
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   place-items: center;
   cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+}
+.nav-burger:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent-strong);
+  background: rgba(148, 163, 184, 0.08);
 }
 
-@media (max-width: 1024px) {
+/* The desktop row needs ~1100px of clear space (brand + 9 links + CTA).
+   Below this the hamburger drawer takes over so links never cram or overlap. */
+@media (max-width: 1160px) {
   .nav-desktop {
     display: none;
   }
@@ -223,6 +240,15 @@
   }
   .topbar-email {
     display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar-inner {
+    min-height: 38px;
+  }
+  .topbar-links {
+    gap: 14px;
   }
 }
 
@@ -251,10 +277,13 @@
   border-right: 1px solid var(--c-dark-line);
   transform: translateX(-102%);
   transition: transform 0.3s cubic-bezier(0.2, 0.65, 0.3, 1);
+  will-change: transform;
   z-index: 1000;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 .nav-drawer.open {
   transform: none;
@@ -264,20 +293,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 20px;
+  gap: 12px;
+  padding: 16px 18px;
   border-bottom: 1px solid var(--c-dark-line);
 }
 .drawer-nav {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 18px 16px;
+  padding: 14px 12px 20px;
 }
 .drawer-link {
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: var(--tx-dark-muted);
-  padding: 13px 14px;
+  padding: 12px 13px;
   border-radius: 10px;
   transition: background 0.18s ease, color 0.18s ease;
 }
@@ -285,9 +315,6 @@
 .drawer-link.active {
   background: var(--c-accent-soft);
   color: var(--c-accent-strong);
-}
-.drawer-cta {
-  margin-top: 16px;
 }
 
 /* ---------- Footer ---------- */
@@ -682,68 +709,6 @@
   height: 380px;
   border: 0;
   filter: grayscale(0.2) contrast(1.05);
-}
-
-/* ---------- Login page ---------- */
-.login-page {
-  min-height: calc(100vh - var(--header-h) - 40px);
-  display: grid;
-  place-items: center;
-  padding-block: 64px;
-  background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(245, 158, 11, 0.1), transparent 55%), var(--c-dark);
-}
-.login-card {
-  width: min(460px, 100%);
-  background: var(--c-dark-2);
-  border: 1px solid var(--c-dark-line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-}
-.login-head {
-  padding: 30px 34px 8px;
-  text-align: center;
-}
-.login-head .logo-slot {
-  width: 84px;
-  height: 84px;
-  margin: 0 auto 14px;
-  display: grid;
-  place-items: center;
-}
-.login-role-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  padding: 20px 34px 8px;
-}
-.role-tab {
-  background: transparent;
-  border: 1px solid var(--c-dark-line);
-  color: var(--tx-dark-muted);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 11px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.18s ease;
-}
-.role-tab.active {
-  background: var(--c-accent-soft);
-  border-color: var(--c-accent);
-  color: var(--c-accent-strong);
-}
-.login-body {
-  padding: 18px 34px 34px;
-}
-.login-foot {
-  padding: 16px 34px 28px;
-  text-align: center;
-  border-top: 1px solid var(--c-dark-line);
-  background: rgba(6, 10, 20, 0.4);
-  font-size: 0.84rem;
-  color: var(--tx-dark-muted);
 }
 
 /* ---------- Gallery ---------- */

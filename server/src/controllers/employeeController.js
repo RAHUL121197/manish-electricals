@@ -127,7 +127,7 @@ async function createEmployee(req, res, next) {
 
     const userId = userResult.rows[0].id;
     const employeeResult = await query(
-      `INSERT INTO employees (employee_code, employee_id, user_id, full_name, email, mobile_number, address, designation, joining_date, status, created_at, updated_at)
+      `INSERT INTO employees (employee_code, employee_id, user_id, full_name, email, phone, address, designation, joining_date, status, created_at, updated_at)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, CURRENT_DATE, $9, now(), now())
        RETURNING *`,
       [code, code, userId, trimmedName, trimmedEmail || null, trimmedPhone, trimmedAddress || null, trimmedDesignation || null, status]
@@ -155,21 +155,27 @@ async function updateEmployee(req, res, next) {
     const { id } = req.params;
     const { name, email, phone, address, designation, status, username } = req.body || {};
 
-    const existing = await query('SELECT * FROM employees WHERE id = $1', [id]);
+    const existing = await query(
+      `SELECT e.*, u.id AS user_pk, u.username AS user_username, u.login_id AS user_login_id
+       FROM employees e
+       LEFT JOIN users u ON u.id = e.user_id
+       WHERE e.id = $1`,
+      [id]
+    );
     if (!existing.rowCount) throw new AppError('Employee not found.', 404);
 
     const current = existing.rows[0];
     const nextName = name ? String(name).trim() : current.full_name;
     const nextEmail = email ? String(email).trim() : current.email;
-    const nextPhone = phone ? String(phone).trim() : current.mobile_number;
+    const nextPhone = phone ? String(phone).trim() : current.phone;
     const nextAddress = address !== undefined ? String(address).trim() : current.address;
     const nextDesignation = designation !== undefined ? String(designation).trim() : current.designation;
     const nextStatus = status || current.status;
-    const nextUsername = username ? String(username).trim() : (current.username || current.login_id || '');
+    const nextUsername = username ? String(username).trim() : (current.user_username || current.user_login_id || '');
 
     await query(
       `UPDATE employees
-       SET full_name = $1, email = $2, mobile_number = $3, address = $4, designation = $5, status = $6, updated_at = now()
+       SET full_name = $1, email = $2, phone = $3, address = $4, designation = $5, status = $6, updated_at = now()
        WHERE id = $7`,
       [nextName, nextEmail || null, nextPhone || null, nextAddress || null, nextDesignation || null, nextStatus, id]
     );
@@ -178,7 +184,7 @@ async function updateEmployee(req, res, next) {
       `UPDATE users
        SET name = $1, email = $2, phone = $3, username = $4, updated_at = now()
        WHERE id = $5`,
-      [nextName, nextEmail || null, nextPhone || null, nextUsername || null, current.user_id]
+      [nextName, nextEmail || null, nextPhone || null, nextUsername || null, current.user_pk]
     );
 
     const updated = await query(

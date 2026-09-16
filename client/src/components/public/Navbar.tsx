@@ -138,9 +138,6 @@ export default function Navbar() {
           </nav>
 
           <div className="nav-actions">
-            <Link to="/login" className="btn btn-primary btn-sm nav-login">
-              {t('nav.login')}
-            </Link>
             <button
               type="button"
               className="nav-burger"
@@ -178,9 +175,6 @@ export default function Navbar() {
               {t(`nav.${link.key}`)}
             </NavLink>
           ))}
-          <NavLink to="/login" className="btn btn-primary drawer-cta">
-            {t('nav.login')}
-          </NavLink>
         </nav>
       </aside>
     </header>

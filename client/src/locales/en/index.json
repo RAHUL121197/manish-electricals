@@ -8,8 +8,7 @@
     "projects": "Projects",
     "safety": "Safety & Quality",
     "gallery": "Gallery",
-    "contact": "Contact Us",
-    "login": "Login"
+    "contact": "Contact Us"
   },
   "footer": {
     "tagline": "Reliable electrical labour supply and field workforce support in Surat since 2001.",
@@ -17,7 +16,7 @@
     "company": "Company",
     "contactHeading": "Contact",
     "rights": "All rights reserved.",
-    "designedBy": "MANISH ELECTRICALS — Est. 2001"
+    "designedBy": "{companyName} — Est. 2001"
   },
   "common": {
     "learnMore": "Learn More",
@@ -48,12 +47,11 @@
   "home": {
     "hero": {
       "eyebrow": "ESTABLISHED 2001 · SURAT, GUJARAT",
-      "title": "MANISH ELECTRICALS",
+      "title": "{companyName}",
       "tagline": "Reliable Electrical Labour Supply & Field Workforce Solutions",
       "support": "Serving Torrent Power Ltd with a professional workforce and more than 20 years of experience.",
       "contact": "Contact Us",
       "services": "Our Services",
-      "employeeLogin": "Employee Login",
       "scroll": "Scroll to explore"
     },
     "stats": {
@@ -68,7 +66,7 @@
     },
     "features": {
       "heading": "What Makes Us Dependable",
-      "sub": "For more than two decades, MANISH ELECTRICALS has built a disciplined, safety-first workforce that keeps field operations running smoothly.",
+      "sub": "For more than two decades, {companyName} has built a disciplined, safety-first workforce that keeps field operations running smoothly.",
       "reliability": "Reliability",
       "reliabilityDesc": "Consistent workforce availability on site, when you need it most.",
       "professionalWorkforce": "Professional Workforce",
@@ -100,14 +98,14 @@
       "heading": "Our Client",
       "sub": "A trusted partner to Torrent Power Ltd for more than 20 years.",
       "torrentName": "Torrent Power Ltd",
-      "torrentDesc": "MANISH ELECTRICALS has been providing labour supply and field workforce support for Torrent Power Ltd for more than 20 years.",
+      "torrentDesc": "{companyName} has been providing labour supply and field workforce support for Torrent Power Ltd for more than 20 years.",
       "localHeading": "Local Customers",
       "localDesc": "We also serve customers across Surat with dependable electrical manpower and field services."
     },
     "about": {
       "heading": "20+ Years of Electrical Field Expertise",
       "sub": "A workforce your operations can rely on, every single day.",
-      "text1": "MANISH ELECTRICALS was established in 2001 and has since built a trusted reputation for electrical labour supply and field workforce support in Surat, Gujarat.",
+      "text1": "{companyName} was established in 2001 and has since built a trusted reputation for electrical labour supply and field workforce support in Surat, Gujarat.",
       "text2": "Today we field a professional team of more than 90 employees serving Torrent Power Ltd and local customers with safety, discipline and quality.",
       "cta": "More About Us"
     },
@@ -121,7 +119,7 @@
     "heading": "About Us",
     "desc": "A disciplined electrical workforce partner based in Surat, Gujarat.",
     "storyHeading": "Who We Are",
-    "story1": "MANISH ELECTRICALS was established in 2001 and has more than 20 years of experience in electrical labour supply and field workforce support.",
+    "story1": "{companyName} was established in 2001 and has more than 20 years of experience in electrical labour supply and field workforce support.",
     "story2": "The company provides labour supply and field workforce services to Torrent Power Ltd and local customers in Surat.",
     "story3": "Our workforce is our strength. More than 90 employees operate under clear supervision, daily reporting and a strong safety culture — ensuring every client gets consistent, accountable field support.",
     "focusHeading": "What We Focus On",
@@ -195,7 +193,7 @@
     "heading": "Our Client",
     "desc": "A long-standing relationship built on dependable field workforce support.",
     "torrentHeading": "Torrent Power Ltd",
-    "torrentDesc": "MANISH ELECTRICALS has been providing labour supply and field workforce support for Torrent Power Ltd for more than 20 years.",
+    "torrentDesc": "{companyName} has been providing labour supply and field workforce support for Torrent Power Ltd for more than 20 years.",
     "torrentDetail": "As our primary client, Torrent Power Ltd has relied on our workforce for daily field operations and project support across the Surat region.",
     "localHeading": "Local Customers",
     "localDesc": "Beyond our primary utility client, we serve local customers across Surat with the same professional standard of electrical manpower and field services.",
@@ -271,81 +269,5 @@
     "success": "Thank you! Your enquiry has been received. We will get back to you shortly.",
     "mapTitle": "Find Us",
     "respondNote": "We usually respond within one working day."
-  },
-  "login": {
-    "heading": "Welcome Back",
-    "sub": "Sign in to your portal.",
-    "admin": "Admin",
-    "employee": "Employee",
-    "loginId": "Login ID",
-    "loginIdPhAdmin": "Enter admin login ID",
-    "loginIdPhEmp": "Enter Employee ID (e.g. ME-0001)",
-    "password": "Password",
-    "passwordPh": "Enter your password",
-    "signIn": "Sign In",
-    "signingIn": "Signing in…",
-    "error": "Invalid login ID or password.",
-    "secureNote": "Your session is secured. Passwords are encrypted.",
-    "helpNote": "Login issues? Ask your administrator for your login ID and password.",
-    "invalidId": "Please enter your login ID.",
-    "invalidPassword": "Please enter your password."
-  },
-  "portal": {
-    "adminPortal": "Admin Portal",
-    "employeePortal": "Employee Portal",
-    "backToWebsite": "Back to Website",
-    "logout": "Logout",
-    "welcomeTitle": "Welcome",
-    "welcomeSubtitle": "Here is your latest information.",
-    "dashboard": "Dashboard",
-    "dashboardSubtitle": "Manage your workforce and operations",
-    "dashboardHint": "Live statistics appear as the modules come online in the upcoming phases.",
-    "quickAccess": "Quick Access",
-    "lastLogin": "Last login",
-    "systemStatus": "System Status",
-    "dbConnected": "Database connected",
-    "dbUnavailable": "Database not configured yet",
-    "dbNote": "Set DATABASE_URL in server/.env and run npm run db:migrate, then npm run db:seed to activate the database.",
-    "employees": "Employees",
-    "attendance": "Attendance",
-    "tasks": "Tasks",
-    "dailyReports": "Daily Reports",
-    "projects": "Projects",
-    "gallery": "Gallery",
-    "enquiries": "Enquiries",
-    "reports": "Reports",
-    "settings": "Settings",
-    "myProfile": "My Profile",
-    "myAttendance": "My Attendance",
-    "myTasks": "My Tasks",
-    "myDailyReports": "My Daily Reports",
-    "notifications": "Notifications",
-    "moduleComingSoon": "This module is under construction and will be activated in an upcoming phase.",
-    "employeeId": "Employee ID",
-    "designation": "Designation",
-    "workLocation": "Work Location",
-    "phone": "Phone",
-    "loginId": "Login ID",
-    "accountStatus": "Account",
-    "profileNote": "Additional records such as attendance, tasks and documents are maintained by your administrator.",
-    "changePassword": "Change Password",
-    "currentPassword": "Current Password",
-    "newPassword": "New Password",
-    "confirmPassword": "Confirm New Password",
-    "savePassword": "Update Password",
-    "saving": "Saving…",
-    "passwordChanged": "Your password has been updated. Please use it next time you sign in.",
-    "passwordMin": "Password must be at least 6 characters.",
-    "passwordMismatch": "Passwords do not match.",
-    "passwordSame": "New password must be different from the current password.",
-    "required": "This field is required."
-  },
-  "settings": {
-    "companySettings": "Company Settings",
-    "companyNote": "These settings are fixed for now and become editable once the database is connected.",
-    "companyName": "Company Name",
-    "language": "Language",
-    "languageNote": "English · ગુજરાતી · हिन्दी",
-    "persistNote": "Settings will be stored in the database in an upcoming phase."
   }
 }
