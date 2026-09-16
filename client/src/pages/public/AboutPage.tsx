@@ -1,4 +1,4 @@
-import { BadgeCheck, CalendarCheck, HardHat, RadioTower, ShieldCheck, Timer, Users, Zap } from 'lucide-react';
+import { BadgeCheck, CalendarCheck, HardHat, RadioTower, ShieldCheck, Timer, Users } from 'lucide-react';
 import SEO from '../../components/SEO';
 import PageHero from '../../components/PageHero';
 import Reveal from '../../components/Reveal';
